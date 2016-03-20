@@ -10,7 +10,7 @@ public class StringCalc {
 	}
 
 	private Stream<String> createStreamOfStringNumbers(String numbers) {
-		return Arrays.stream(numbers.split(","));
+		return Arrays.stream(numbers.split(",|\n"));
 	}
 
 	private int sumStreamOfStringNumbers(Stream<String> numberStream) {
