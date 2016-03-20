@@ -29,4 +29,9 @@ public class CalcTest {
 		assertEquals(6, stringCalc.calc("1\n2,3"));
 	}
 	
+	@Test
+	public void shouldHandleNewLinesAndCommaTogether() {
+		assertEquals(1, stringCalc.calc("1,\n"));
+	}
+	
 }
