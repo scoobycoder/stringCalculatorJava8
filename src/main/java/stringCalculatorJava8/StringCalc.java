@@ -6,8 +6,14 @@ import java.util.stream.Stream;
 public class StringCalc {
 
 	public int calc(String numbers) {
-		Stream<String> numberStream = Arrays.stream(numbers.split(",")) ;
-		
+		return sumStreamOfStringNumbers(createStreamOfStringNumbers(numbers));
+	}
+
+	private Stream<String> createStreamOfStringNumbers(String numbers) {
+		return Arrays.stream(numbers.split(","));
+	}
+
+	private int sumStreamOfStringNumbers(Stream<String> numberStream) {
 		return numberStream.mapToInt(n -> Integer.valueOf(n)).sum();
 	}
 
