@@ -24,4 +24,14 @@ public class CalcTest {
 		assertEquals(4, stringCalc.calc("0,1,3"));
 	}
 	
+	@Test
+	public void shouldHandleNewLinesInsteadOfCommasAsDelimiters() {
+		assertEquals(6, stringCalc.calc("1\n2,3"));
+	}
+	
+	@Test
+	public void shouldHandleNewLinesAndCommaTogether() {
+		assertEquals(1, stringCalc.calc("1,\n"));
+	}
+	
 }
