@@ -9,20 +9,30 @@ import java.util.stream.Stream;
 public class StringCalc {
 
 	public int calc(String numbers) {
-		Stream<String> numberStream = createStreamOfStringNumbers(numbers);
-		//numberStream.forEach(System.out::println);
-		return sumStreamOfStringNumbers(numberStream);
+		return sumStreamOfStringNumbers(createStreamOfStringNumbers(numbers));
 	}
 
 	private Stream<String> createStreamOfStringNumbers(String numbers) {
+		List<String> numberArray = splitStringWithDelimiter(numbers);
+		removingNullAndEmpty(numberArray);
+		return removeNonNumbers(numberArray);
+	}
+
+	private List<String> splitStringWithDelimiter(String numbers) {
 		String delimitter = String.valueOf(numbers.charAt(2));
 		List<String> numberArray = (List<String>) Arrays
 				.asList(numbers.split(delimitter));
-		numberArray.removeIf(item -> item == null || "".equals(item));
+		return numberArray;
+	}
 
+	private Stream<String> removeNonNumbers(List<String> numberArray) {
 		return Arrays.stream(
 				convertStreamToArrayForCharacterProcessing(numberArray)).map(
 				removeSpecialCharacters()).filter(removeZeros());
+	}
+
+	private void removingNullAndEmpty(List<String> numberArray) {
+		numberArray.removeIf(item -> item == null || "".equals(item));
 	}
 
 	private String[] convertStreamToArrayForCharacterProcessing(List<String> numberArray) {
