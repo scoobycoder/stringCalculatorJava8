@@ -1,20 +1,32 @@
 package stringCalculatorJava8;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class StringCalc {
 
 	public int calc(String numbers) {
-		return sumStreamOfStringNumbers(createStreamOfStringNumbers(numbers));
+		Stream<String> numberStream = createStreamOfStringNumbers(numbers);
+		//numberStream.forEach(System.out::println);
+		return sumStreamOfStringNumbers(numberStream);
 	}
 
 	private Stream<String> createStreamOfStringNumbers(String numbers) {
-		return Arrays.stream(numbers.split(","));
+		String delimitter = String.valueOf(numbers.charAt(2));
+		List<String> numberArray = (List<String>) Arrays
+				.asList(numbers.split(delimitter));
+		numberArray.removeIf(item -> item == null || "".equals(item));
+
+		return Arrays.stream(
+				numberArray.toArray(new String[numberArray.size()])).map(
+				n -> n.replace("//", "0").replace("\n", "0"));
 	}
 
 	private int sumStreamOfStringNumbers(Stream<String> numberStream) {
-		return numberStream.mapToInt(n -> Integer.valueOf(n)).sum();
+		return numberStream.map(n -> n).mapToInt(n -> Integer.parseInt(n))
+				.sum();
 	}
 
 }

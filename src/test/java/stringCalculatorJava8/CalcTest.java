@@ -16,12 +16,22 @@ public class CalcTest {
 	
 	@Test
 	public void shouldAddTwoNumbers() {
-		assertEquals(3, stringCalc.calc("1,2"));
+		assertEquals(3, stringCalc.calc("//,1,2"));
 	}
 	
 	@Test
 	public void shouldAddThreeNumbers() {
-		assertEquals(4, stringCalc.calc("0,1,3"));
+		assertEquals(4, stringCalc.calc("//,0,1,3"));
+	}
+	
+	@Test
+	public void shouldHandleNewLinesInsteadOfCommasAsDelimiters() {
+		assertEquals(6, stringCalc.calc("//,1\n2,3"));
+	}
+	
+	@Test
+	public void shouldHandleAnyDelimitterPassed() {
+		assertEquals(3, stringCalc.calc("//;\n1;2"));
 	}
 	
 }
