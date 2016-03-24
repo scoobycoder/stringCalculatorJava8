@@ -29,4 +29,9 @@ public class CalcTest {
 		assertEquals(3, stringCalc.calc("//;\n1;2"));
 	}
 	
+	@Test
+	public void shouldHandleZAsDelimitter() {
+		assertEquals(3, stringCalc.calc("//Z\n1Z2"));
+	}
+	
 }
