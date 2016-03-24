@@ -25,11 +25,6 @@ public class CalcTest {
 	}
 	
 	@Test
-	public void shouldHandleNewLinesInsteadOfCommasAsDelimiters() {
-		assertEquals(6, stringCalc.calc("//,1\n2,3"));
-	}
-	
-	@Test
 	public void shouldHandleAnyDelimitterPassed() {
 		assertEquals(3, stringCalc.calc("//;\n1;2"));
 	}

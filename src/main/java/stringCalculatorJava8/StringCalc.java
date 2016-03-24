@@ -1,6 +1,5 @@
 package stringCalculatorJava8;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -21,7 +20,7 @@ public class StringCalc {
 
 		return Arrays.stream(
 				numberArray.toArray(new String[numberArray.size()])).map(
-				n -> n.replace("//", "0").replace("\n", "0"));
+				n -> n.replace("//", "0").replace("\n", "0")).filter(n -> Integer.valueOf(n) > 0);
 	}
 
 	private int sumStreamOfStringNumbers(Stream<String> numberStream) {
