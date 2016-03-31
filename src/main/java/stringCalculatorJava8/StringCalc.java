@@ -15,7 +15,16 @@ public class StringCalc {
 	private Stream<String> createStreamOfStringNumbers(String numbers) {
 		List<String> numberArray = splitStringWithDelimiter(numbers);
 		removingNullAndEmpty(numberArray);
-		return removeNonNumbers(numberArray);
+		Stream<String> newNumberArray = removeNonNumbers(numberArray);
+		return negativeNumbersThrowException(newNumberArray);
+	}
+
+	private Stream<String> negativeNumbersThrowException(Stream<String> numberArray) {
+		numberArray.forEach(System.out::println);
+		if (numberArray.filter(n -> Integer.valueOf(n) < 1) != null) {
+			throw new IllegalArgumentException("No Negative Numbers are allowed");
+		}
+		return numberArray;
 	}
 
 	private List<String> splitStringWithDelimiter(String numbers) {

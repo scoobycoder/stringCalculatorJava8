@@ -34,4 +34,9 @@ public class CalcTest {
 		assertEquals(3, stringCalc.calc("//Z\n1Z2"));
 	}
 	
+	@Test //(expected = IllegalArgumentException.class)  
+	public void shouldThrowExceptionWhenNegativePassed() {
+		stringCalc.calc("//;2;-1");
+	}
+	
 }
